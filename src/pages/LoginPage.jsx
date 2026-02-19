@@ -6,32 +6,44 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    if (!phone.startsWith("+254") || phone.length < 13) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const phoneRegex = /^\+254\d{9}$/;
+
+    if (!phoneRegex.test(phone)) {
       setError("Enter a valid phone number starting with +254");
       return;
     }
-    setError("");
+
+    // Mock login
+    localStorage.setItem("loggedIn", "true");
     navigate("/main");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white px-4">
-      <h1 className="text-3xl font-bold mb-8">YouBloom Explorer Login</h1>
-      <input
-        type="text"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        placeholder="+254712345678"
-        className="mb-4 p-3 rounded w-full max-w-sm text-black"
-      />
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <button
-        onClick={handleLogin}
-        className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded text-white font-semibold"
+    <div className="flex items-center justify-center min-h-screen bg-black">
+      <form
+        onSubmit={handleLogin}
+        className="bg-gray-900 p-8 rounded shadow-md w-full max-w-sm"
       >
-        Login
-      </button>
+        <h1 className="text-2xl font-bold text-white mb-6 text-center">
+          YouBloom Explorer Login
+        </h1>
+        <input
+          type="text"
+          placeholder="+254712345678"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="w-full p-3 mb-4 rounded text-black"
+        />
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <button
+          type="submit"
+          className="w-full bg-red-600 hover:bg-red-500 text-white py-3 rounded font-semibold"
+        >
+          Login
+        </button>
+      </form>
     </div>
   );
 }
