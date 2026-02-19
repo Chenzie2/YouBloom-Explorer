@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import DetailPage from "./pages/DetailPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const isLoggedIn = localStorage.getItem("loggedIn") === "true";
 
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route
@@ -20,6 +23,7 @@ function App() {
           element={isLoggedIn ? <DetailPage /> : <Navigate to="/" />}
         />
       </Routes>
+      <Footer />
     </Router>
   );
 }
