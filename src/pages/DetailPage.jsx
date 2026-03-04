@@ -22,7 +22,7 @@ export default function DetailPage() {
         // Enhance user data with additional mock info for better visualization
         const enhancedData = {
           ...data,
-          avatar: `https://ui-avatars.com/api/?name=${data.name}&background=dc2626&color=fff&size=256`,
+          avatar: `https://ui-avatars.com/api/?name=${data.name}&background=dc2626&color=fff&size=180`,
           role: ['Admin', 'Editor', 'Viewer'][Math.floor(Math.random() * 3)],
           status: Math.random() > 0.3 ? 'active' : 'away',
           department: ['Engineering', 'Marketing', 'Sales', 'HR'][Math.floor(Math.random() * 4)],
